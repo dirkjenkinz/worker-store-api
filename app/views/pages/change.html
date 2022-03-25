@@ -1,0 +1,77 @@
+/** * Created by Patrick Whittaker */
+
+{% extends "layout/layout.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+Workers Utility - Update
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <form class="form" action="/post-change", method="'post">
+  {% call govukFieldset({
+    legend: {
+      text: "Changed Worker Details",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+
+  {{ govukInput({
+    label: {
+      text: "Worker ID"
+    },
+    classes: "govuk-input--width-10",
+    id: "worker-id",
+    name: "worker-id"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Name"
+    },
+    classes: "govuk-input--width-10",
+    id: "name",
+    name: "name"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: 'Latitude'
+    },
+    classes: "govuk-input--width-10",
+    id: "latitude",
+    name: "latitude"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: 'Longitude'
+    },
+    classes: "govuk-input--width-10",
+    id: "longitude",
+    name: "longitude"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Home"
+    },
+    classes: "govuk-input--width-10",
+    id: "home",
+    name: "home"
+  }) }}
+
+{% endcall %}
+    {{ govukButton({
+      text: "Add worker"
+    }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

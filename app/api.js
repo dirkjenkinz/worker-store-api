@@ -28,19 +28,19 @@ const postWorker = async (id, name, location, home) => {
     const long = location[0];
     const lat = location[1];
     const body = {
-        workerId: id,
+        workerId: parseInt(id),
         name: name,
         location: {
-            longitude: long,
-            latitude: lat,
+            longitude: Number(long),
+            latitude: Number(lat),
         },
         home: home,
     }
-
     try {
         response = await axios.post('http://localhost:8080/v1/workers', body);
-        return response
+        return response.status
     } catch (error) {
+        console.log('error=', error.response.data);
         return error.response.status;
     }
 };
@@ -49,11 +49,11 @@ const updateWorker = async (id, name, location, home) => {
     const long = location[0];
     const lat = location[1];
     const body = {
-        workerId: id,
+        workerId: parseInt(id),
         name: name,
         location: {
-            longitude: long,
-            latitude: lat,
+            longitude: Number(long),
+            latitude: Number(lat),
         },
         home: home,
     }

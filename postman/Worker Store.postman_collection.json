@@ -348,7 +348,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"workerId\": 21882100,\n    \"name\": \"Dirk Jenkinz\",\n    \"location\": {\n        \"latitude\": 51.5098651,\n        \"longitude\": 0.1100002\n    },\n    \"home\": \"London\"\n}",
+							"raw": "{\n    \"workerId\": 21882101,\n    \"name\": \"Lucy Liu\",\n    \"location\": {\n        \"latitude\": 61.5024551,\n        \"longitude\": 0.1100078\n    },\n    \"home\": \"London\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -356,7 +356,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/workers?workeridxxx=21882333",
+							"raw": "{{baseUrl}}/workers",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -366,7 +366,8 @@
 							"query": [
 								{
 									"key": "workeridxxx",
-									"value": "21882333"
+									"value": "21882333",
+									"disabled": true
 								}
 							],
 							"variable": [
@@ -419,7 +420,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Napoleon Bonaparte\",\n  \"home\": \"Paris\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 78112351\n}",
+							"raw": "{\n  \"name\": \"Napoleon Bonaparte\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 78112351\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -464,6 +465,19 @@
 				},
 				{
 					"name": "/workers - invalid id supplied",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -478,7 +492,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"home\": \"Duis tempor ad velit nos\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 78112351\n}",
+							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"home\": \"Duis tempor ad velit nos\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -516,6 +530,19 @@
 				},
 				{
 					"name": "/workers - updated worker record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -530,7 +557,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"home\": \"Duis tempor ad velit nos\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 78112351\n}",
+							"raw": "{\n  \"name\": \"Fat Twit Twittaker\",\n  \"home\": \"Glasgow\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 21882102\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -595,7 +622,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"home\": \"Duis tempor ad velit nos\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 78112351\n}",
+							"raw": "{\n  \"name\": \"Barney Rubble\",\n  \"home\": \"Bedrock\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 21881111\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,8 +665,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -660,7 +687,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"home\": \"Duis tempor ad velit nos\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": 218820099\n}",
+							"raw": "{\n  \"name\": \"nostrud reprehenderit in\",\n  \"location\": {\n    \"latitude\": -54335529.95467026,\n    \"longitude\": -29949212.309460595\n  },\n  \"workerId\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

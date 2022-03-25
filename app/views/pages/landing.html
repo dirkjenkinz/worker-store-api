@@ -3,40 +3,50 @@
 {% extends "layout/layout.html" %}
 {% from "input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
 
 {% block pageTitle %}
 Workers Utility - Landing
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-column-two-thirds">
-    <div class="govuk-grid-row">
-      <form action="/get-worker" method="GET">
-        {{ govukButton({
-          text: "Get details for worker 21882000"
-        }) }}
-      </form>
-    </div>
-    <div class="govuk-grid-row">
-      <form action="/get-invalid" method="GET">
-        {{ govukButton({
-          text: "Get invalid ID"
-        }) }}
-      </form>
-    </div>
-    <div class="govuk-grid-row">
-      <form action="/get-all" method="GET">
-        {{ govukButton({
-          text: "Get all workers"
-        }) }}
-      </form>
-    </div>
-    <div class="govuk-grid-row">
-      <form action="/worker-by-home" method="GET">
-        {{ govukButton({
-          text: "Find Worker By Home (home='home')"
-        }) }}
-      </form>
-    </div>
+<div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <form class="form" action="/choice">
+      {{ govukRadios({
+        idPrefix: "what-do-you-want-to-do",
+        name: "what-do-you-want-to-do",
+        fieldset: {
+          legend: {
+            text: "What do you want to do?",
+              isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }, 
+        items: [
+          {
+            value: "all",
+            text: "See a list of all workers"
+          },
+          {
+            value: "add",
+              text: "Add a worker to the list"
+          },
+            {
+            value: "change",
+            text: "Change a worker's details"
+          },
+          {
+            value: "home",
+            text: "See a list of workers at a particular home"
+          }
+        ]
+      }) }}
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </form>
   </div>
+</div>
 {% endblock %}

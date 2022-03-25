@@ -4,10 +4,12 @@ const nunjucks = require('nunjucks');
 let app = express();
 const bodyParser = require('body-parser');
 const landingRouter = require('./app/routes/landing');
-const getWorkerRouter = require('./app/routes/get-worker');
-const getInvalidRouter = require('./app/routes/get-invalid');
+const choiceRouter = require('./app/routes/choice');
 const getAllRouter = require('./app/routes/get-all');
-const workersByHomeRouter = require('./app/routes/workers-by-home')
+const getAddRouter = require('./app/routes/get-add');
+const postAddRouter = require('./app/routes/post-add');
+const getChangeRouter = require('./app/routes/get-change');
+const postChangeRouter = require('./app/routes/get-change');
 
 const { getTimeStamp } = require('./app/utils');
 
@@ -31,16 +33,18 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/css', express.static(path.resolve(__dirname, 'app/public/css')));
-app.use('/get-worker', getWorkerRouter);
-app.use('/get-invalid', getInvalidRouter);
-app.use('/get-all', getAllRouter);
-app.use('/worker-by-home', workersByHomeRouter);
+app.use('/choice', choiceRouter);
 app.use('/', landingRouter);
+app.use('/all', getAllRouter);
+app.use('/add', getAddRouter);
+app.use('/post-add', postAddRouter);
+app.use('/change', getChangeRouter);
+app.use('/post-change', postChangeRouter);
 
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     const t = getTimeStamp();
-    console.log(`Workers Utility up and running on port ${PORT} at ${t[0]} - ${t[1]}`);
+    console.log(`Workers Store API up and running on port ${PORT} at ${t[0]} - ${t[1]}`);
 });
 
 module.exports = { app, router };
