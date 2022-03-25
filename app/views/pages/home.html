@@ -1,0 +1,39 @@
+/** * Created by Patrick Whittaker */
+
+{% extends "layout/layout.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+Workers Utility - Find by Home
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <form class="form" action="/post-home", method="'post">
+  {% call govukFieldset({
+    legend: {
+      text: "List Workers By Home",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+  {{ govukInput({
+    label: {
+      text: "Home"
+    },
+    classes: "govuk-input--width-10",
+    id: "home",
+    name: "home"
+  }) }}
+{% endcall %}
+    {{ govukButton({
+      text: "Get List"
+    }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

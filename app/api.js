@@ -20,7 +20,8 @@ const getAllWorkers = async () =>{
         let response = await axios.get(`http://localhost:8080/v1/workers`);
         return response
     } catch (error) {
-        return error.response.status;
+        console.log('Error =', error)
+        return error.response;
     }
 };
 
@@ -46,6 +47,7 @@ const postWorker = async (id, name, location, home) => {
 };
 
 const updateWorker = async (id, name, location, home) => {
+    console.log(id,'<<<')
     const long = location[0];
     const lat = location[1];
     const body = {
@@ -60,7 +62,7 @@ const updateWorker = async (id, name, location, home) => {
     
     try {
         response = await axios.put('http://localhost:8080/v1/workers', body);
-        return response
+        return response.status;
     } catch (error) {
         return error.response.status;
     }

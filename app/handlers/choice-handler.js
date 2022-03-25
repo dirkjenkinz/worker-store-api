@@ -9,6 +9,8 @@ const getChoice = async (req, res) => {
         res.redirect('/add');
     } else if (what === 'change') {
         res.redirect('/change');
+    } else {
+        res.redirect('/home');
     }
 };
 

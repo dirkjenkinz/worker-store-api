@@ -1,0 +1,42 @@
+/** * Created by Patrick Whittaker */
+
+{% extends "layout/layout.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+Workers Utility - Home List
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <form class="form" action="/" , method="'post">
+      <table>
+
+        <head>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+          </tr>
+        </head>
+
+        <body>
+          {% for worker in data %}
+          <tr>
+            <td>{{worker.name}}</td>
+            <td>{{worker.workerId}}</td>
+          </tr>
+          {% endfor %}
+        </body>
+      </table>
+      <br><br>
+      {{ govukButton({
+      text: "Return to landing page"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

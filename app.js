@@ -9,7 +9,9 @@ const getAllRouter = require('./app/routes/get-all');
 const getAddRouter = require('./app/routes/get-add');
 const postAddRouter = require('./app/routes/post-add');
 const getChangeRouter = require('./app/routes/get-change');
-const postChangeRouter = require('./app/routes/get-change');
+const postChangeRouter = require('./app/routes/post-change');
+const getHomeRouter = require('./app/routes/get-home');
+const postHomeRouter = require('./app/routes/post-home');
 
 const { getTimeStamp } = require('./app/utils');
 
@@ -40,6 +42,8 @@ app.use('/add', getAddRouter);
 app.use('/post-add', postAddRouter);
 app.use('/change', getChangeRouter);
 app.use('/post-change', postChangeRouter);
+app.use('/home', getHomeRouter);
+app.use('/post-home', postHomeRouter);
 
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {

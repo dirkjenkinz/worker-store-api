@@ -22,14 +22,17 @@ Workers Utility - Update
     }
   }) %}
 
-  {{ govukInput({
-    label: {
-      text: "Worker ID"
-    },
-    classes: "govuk-input--width-10",
-    id: "worker-id",
-    name: "worker-id"
-  }) }}
+<h1 id="workerId">{{workerId}}</h1>
+
+{{ govukInput({
+  label: {
+    text: "Worker ID"
+  },
+  classes: "govuk-input--width-10",
+  id: "worker-id",
+  name: "workerId",
+  value: workerId
+}) }}
 
   {{ govukInput({
     label: {
@@ -37,7 +40,8 @@ Workers Utility - Update
     },
     classes: "govuk-input--width-10",
     id: "name",
-    name: "name"
+    name: "name",
+    value: name
   }) }}
 
   {{ govukInput({
@@ -46,7 +50,8 @@ Workers Utility - Update
     },
     classes: "govuk-input--width-10",
     id: "latitude",
-    name: "latitude"
+    name: "latitude",
+    value: latitude
   }) }}
 
   {{ govukInput({
@@ -55,7 +60,8 @@ Workers Utility - Update
     },
     classes: "govuk-input--width-10",
     id: "longitude",
-    name: "longitude"
+    name: "longitude",
+    value: longitude
   }) }}
 
   {{ govukInput({
@@ -64,12 +70,13 @@ Workers Utility - Update
     },
     classes: "govuk-input--width-10",
     id: "home",
-    name: "home"
+    name: "home",
+    value: home
   }) }}
 
 {% endcall %}
     {{ govukButton({
-      text: "Add worker"
+      text: "Change worke's details'"
     }) }}
     </form>
   </div>

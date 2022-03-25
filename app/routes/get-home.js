@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { postChange } = require('../handlers/post-change-handler');
+const { getHome } = require('../handlers/get-home-handler');
 
-router.get('/', postChange);
+router.get('/', getHome);
 module.exports = router;

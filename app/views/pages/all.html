@@ -10,29 +10,53 @@ Workers Utility - All Workers
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <table>
-      <head>
-        <tr><th>Worker ID</th><th>Name</th><th>Location</th><th>Home</th></tr>
-      </head>
-      <body>
-        {% for item in list %}
-        <tr>
-          <td>{{item.workerId}}</td>
-          <td>{{item.name}}</td>
-          <td>Latitude: {{item.location.latitude}}, Longitude: {{item.location.longitude}}</td>
-          <td>{{item.home}}</td>
-        </tr>
-        {% endfor %}
-      </body>
-    </table>
-  </div>
-  <div class="govuk-grid-row">
-    <br>
-    <form action="/" method="GET">
-      {{ govukButton({
-        text: "Return to landing page"
-      }) }}
-    </form>
-  </div>
+<div class="govuk-grid-row">
+  <table id="workerTable">
+
+    <head>
+      <tr>
+        <th>Worker ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Home</th>
+      </tr>
+    </head>
+
+    <body>
+      {% for item in list %}
+      <tr id='line{{loop.index}}'>
+        <td id='wid{{loop.index}}'>{{item.workerId}}</td>
+        <td id='name{{loop.index}}'>{{item.name}}</td>
+        <td id='location{{loop.index}}'>Latitude: {{item.location.latitude}}, Longitude: {{item.location.longitude}}</td>
+        <td id='home{{loop.index}}'>{{item.home}}</td>
+        <td><button id='del{{loop.index}}' onclick="changeItem(this.id)">Change Details</button></td>
+      </tr>
+      {% endfor %}
+    </body>
+  </table>
+</div>
+<div class="govuk-grid-row">
+  <br>
+  <form action="/" method="GET">
+    {{ govukButton({
+    text: "Return to landing page"
+    }) }}
+  </form>
+</div>
+<script>
+  const changeItem = (id) => {
+    id = id.substring(3);
+    const g = document.getElementById(`line${id}`);
+    const workerId = g.cells[0].innerText;
+    const name = g.cells[1].innerText;
+    const location = g.cells[2].innerText;
+    const home = g.cells[3].innerText;
+
+    let l = location.split(',');
+    let lat = l[0].substring(l[0].indexOf(':') + 1).trim();
+    let long = l[1].substring(l[1].indexOf(':') + 1).trim();
+
+    window.location.replace(`/change?workerId=${workerId}&name=${name}&latitude=${lat}&longitude=${long}&home=${home}`);
+  };
+</script>
 {% endblock %}
