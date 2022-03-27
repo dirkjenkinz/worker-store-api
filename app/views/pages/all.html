@@ -11,28 +11,27 @@ Workers Utility - All Workers
 
 {% block content %}
 <div class="govuk-grid-row">
-  <table id="workerTable">
-
-    <head>
-      <tr>
-        <th>Worker ID</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Home</th>
+    <table class="govuk-table" id="workerTable">
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Worker ID</th>
+        <th class="govuk-table__header">Name</th>
+        <th class="govuk-table__header">Location (Latitude, Longitude)</th>
+        <th class="govuk-table__header">Home</th>
       </tr>
-    </head>
+    </thead>
 
-    <body>
+    <tbody>
       {% for item in list %}
-      <tr id='line{{loop.index}}'>
-        <td id='wid{{loop.index}}'>{{item.workerId}}</td>
-        <td id='name{{loop.index}}'>{{item.name}}</td>
-        <td id='location{{loop.index}}'>Latitude: {{item.location.latitude}}, Longitude: {{item.location.longitude}}</td>
-        <td id='home{{loop.index}}'>{{item.home}}</td>
-        <td><button id='del{{loop.index}}' onclick="changeItem(this.id)">Change Details</button></td>
+      <tr class="govuk-table__row" id='line{{loop.index}}'>
+        <td class="govuk-table__cell" id='wid{{loop.index}}'>{{item.workerId}}</td>
+        <td class="govuk-table__cell" id='name{{loop.index}}'>{{item.name}}</td>
+        <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}},{{item.location.longitude}}</td>
+        <td class="govuk-table__cell" id='home{{loop.index}}'>{{item.home}}</td>
+        <td class="govuk-table__cell"><button id='del{{loop.index}}' onclick="changeItem(this.id)">Change Details</button></td>
       </tr>
       {% endfor %}
-    </body>
+    </tbody>
   </table>
 </div>
 <div class="govuk-grid-row">

@@ -4,10 +4,11 @@ const url = require('url');
 const postHome = async (req, res) => {
   console.log('postHomeHandler');
   const u = url.parse(req.originalUrl, true);
-  console.log(u.query);
   const response = await findWorkersByHome(u.query.home);
-  console.log(response.data)
-  res.render('pages/home-list', { data: response.data});
+  res.render('pages/home-list', { 
+    data: response.data,
+    home: u.query.home,
+  });
 };
 
 module.exports = { postHome };
