@@ -1,0 +1,31 @@
+/** * Created by Patrick Whittaker */
+
+{% extends "layout/layout.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block pageTitle %}
+Workers Utility - Deleted Worker
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <form class="form" action="/">
+
+      {% if response === 200 %}
+        <h1>Success: Worker {{id}} deleted</h1>
+      {% else %}
+      <h1>Fail: Worker {{id}} was not deleted</h1>
+      {% endif %}
+      
+      {{ govukButton({
+        text: "Return to landing page"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

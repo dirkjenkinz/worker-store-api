@@ -14,6 +14,16 @@ const getWorker = async (id) => {
     }
 };
 
+const deleteWorker = async (id) => {
+    console.log('deleteWorker:', id);
+    try {
+        let response = await axios.delete(`http://localhost:8080/v1/workers/${id}`);
+        return response.status
+    } catch (error) {
+        return error.response.status;
+    }
+};
+
 const getAllWorkers = async () =>{
     console.log('getAllWorkers');
     try {
@@ -21,7 +31,7 @@ const getAllWorkers = async () =>{
         return response
     } catch (error) {
         console.log('Error =', error)
-        return error.response;
+        return error.response.status;
     }
 };
 
@@ -41,7 +51,7 @@ const postWorker = async (id, name, location, home) => {
         response = await axios.post('http://localhost:8080/v1/workers', body);
         return response.status
     } catch (error) {
-        console.log('error=', error.response.data);
+        console.log('error=', error.response.statusText);
         return error.response.status;
     }
 };
@@ -73,5 +83,6 @@ module.exports = {
     getAllWorkers, 
     postWorker,
     updateWorker,
-    findWorkersByHome
+    findWorkersByHome,
+    deleteWorker
 };

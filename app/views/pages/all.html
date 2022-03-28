@@ -29,6 +29,7 @@ Workers Utility - All Workers
         <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}},{{item.location.longitude}}</td>
         <td class="govuk-table__cell" id='home{{loop.index}}'>{{item.home}}</td>
         <td class="govuk-table__cell"><button id='del{{loop.index}}' onclick="changeItem(this.id)">Change Details</button></td>
+        <td class="govuk-table__cell"><button id='del{{loop.index}}' onclick="delItem(this.id)">Delete</button></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -54,8 +55,13 @@ Workers Utility - All Workers
     let l = location.split(',');
     let lat = l[0].substring(l[0].indexOf(':') + 1).trim();
     let long = l[1].substring(l[1].indexOf(':') + 1).trim();
-
     window.location.replace(`/change?workerId=${workerId}&name=${name}&latitude=${lat}&longitude=${long}&home=${home}`);
+  };
+  const delItem = (id) => {
+    id = id.substring(3);
+    const g = document.getElementById(`line${id}`);
+    const workerId = g.cells[0].innerText;
+    window.location.replace(`/delete?workerId=${workerId}`);
   };
 </script>
 {% endblock %}

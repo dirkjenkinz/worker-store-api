@@ -12,6 +12,7 @@ const getChangeRouter = require('./app/routes/get-change');
 const postChangeRouter = require('./app/routes/post-change');
 const getHomeRouter = require('./app/routes/get-home');
 const postHomeRouter = require('./app/routes/post-home');
+const postDeleteRouter = require('./app/routes/post-delete');
 
 const { getTimeStamp } = require('./app/utils');
 
@@ -41,6 +42,7 @@ app.use('/all', getAllRouter);
 app.use('/add', getAddRouter);
 app.use('/post-add', postAddRouter);
 app.use('/change', getChangeRouter);
+app.use('/delete', postDeleteRouter);
 app.use('/post-change', postChangeRouter);
 app.use('/home', getHomeRouter);
 app.use('/post-home', postHomeRouter);
