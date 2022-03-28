@@ -1,7 +1,9 @@
 const { getWorker } = require('../api');
 const url = require('url');
+const { logger } = require('../utils');
 
 const getWorkerDetails = async (req, res) => {
+    logger.info('workers handler');
     const response = await getWorker(21882000);
     res.render('pages/workers', {
         rc: response.status,

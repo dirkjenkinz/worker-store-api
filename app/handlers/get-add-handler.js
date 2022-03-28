@@ -1,5 +1,7 @@
+const { logger } = require("../utils");
+
 const getAdd = async (req, res) => {
-    console.log('getAddHandler');
+    logger.info('get add handler');
     res.render('pages/add');
 };
 

@@ -1,41 +1,46 @@
 const axios = require('axios');
+const { logger } = require('./utils');
 const findWorkersByHome = async (home) => {
+    logger.info('findWorkersByHome');
     let response = await axios.get(`http://localhost:8080/v1/workers/findByHome/${home}`);
     return response;
 };
 
 const getWorker = async (id) => {
-    console.log('getWorker:', id);
+    logger.info('getWorker');
     try {
         let response = await axios.get(`http://localhost:8080/v1/workers/${id}`);
         return response
     } catch (error) {
+        logger.debug(error.response.status);
         return error.response.status;
     }
 };
 
 const deleteWorker = async (id) => {
-    console.log('deleteWorker:', id);
+    logger.info('deleteWorker');
     try {
         let response = await axios.delete(`http://localhost:8080/v1/workers/${id}`);
         return response.status
     } catch (error) {
+        logger.debug(error.response.status);
         return error.response.status;
     }
 };
 
 const getAllWorkers = async () =>{
-    console.log('getAllWorkers');
+    logger.info('getAllworkers');
     try {
         let response = await axios.get(`http://localhost:8080/v1/workers`);
         return response
     } catch (error) {
-        console.log('Error =', error)
+        logger.debug(error.response.status);
         return error.response.status;
     }
 };
 
 const postWorker = async (id, name, location, home) => {
+    logger.info('postWorker');
     const long = location[0];
     const lat = location[1];
     const body = {
@@ -51,12 +56,13 @@ const postWorker = async (id, name, location, home) => {
         response = await axios.post('http://localhost:8080/v1/workers', body);
         return response.status
     } catch (error) {
-        console.log('error=', error.response.statusText);
+        logger.debug(error.response.statusText);
         return error.response.status;
     }
 };
 
 const updateWorker = async (id, name, location, home) => {
+    logger.info('updateWorker');
     const long = location[0];
     const lat = location[1];
     const body = {
@@ -73,6 +79,7 @@ const updateWorker = async (id, name, location, home) => {
         response = await axios.put('http://localhost:8080/v1/workers', body);
         return response.status;
     } catch (error) {
+        logger.debug('error.response.status;');
         return error.response.status;
     }
 };

@@ -1,5 +1,7 @@
+const { logger } = require("../utils");
+
 const getHome = async (req, res) => {
-    console.log('getHomeHandler');
+    logger.info('get home handler');
     res.render('pages/home');
 };
 

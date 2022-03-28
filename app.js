@@ -13,6 +13,7 @@ const postChangeRouter = require('./app/routes/post-change');
 const getHomeRouter = require('./app/routes/get-home');
 const postHomeRouter = require('./app/routes/post-home');
 const postDeleteRouter = require('./app/routes/post-delete');
+const {logger} = require('./app/utils')
 
 const { getTimeStamp } = require('./app/utils');
 
@@ -50,7 +51,7 @@ app.use('/post-home', postHomeRouter);
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     const t = getTimeStamp();
-    console.log(`Workers Store API up and running on port ${PORT} at ${t[0]} - ${t[1]}`);
+    logger.info(`Workers Store API up and running on port ${PORT} at ${t[0]} - ${t[1]}`);
 });
 
 module.exports = { app, router };

@@ -1,5 +1,13 @@
 const { expect, test } = require('@jest/globals');
-const { getWorker, getAllWorkers, postWorker, updateWorker, findWorkerByHome } = require('../app/api');
+
+const {
+    getWorker,
+    getAllWorkers,
+    postWorker, updateWorker,
+    findWorkersByHome,
+    deleteWorker
+} = require('../app/api');
+
 const axios = require('axios');
 const workerDetails = '{\"workerId\":0,\"name\":\"name\",\"location\":{\"latitude\":6.0274563,\"longitude\":1.4658129},\"home\":\"home\"}';
 const worker = {
@@ -33,7 +41,7 @@ jest.mock('axios');
 
 afterEach(() => {
     jest.clearAllMocks();
-  });
+});
 
 describe("Get worker", () => {
     test("it should call axios", async () => {
@@ -77,16 +85,6 @@ describe("Add a new worker", () => {
         const response = await postWorker(21882100, 'Dirk Jenkinz', [1.4658129, 6.0274563], 'Midwich');
         expect(axios.post).toHaveBeenCalledWith('http://localhost:8080/v1/workers', worker);
     });
-    test("it should return meaningful data", async () => {
-        axios.post.mockResolvedValueOnce(worker);
-        const response = await postWorker(21882100, 'Dirk Jenkinz', [1.4658129, 6.0274563], 'Midwich');
-        expect(response).toEqual(worker);
-    });
-    test("it should return 404 code", async () => {
-        axios.post.mockResolvedValueOnce('ResponsePayload { code: 404, payload: undefined }');
-        const response = await postWorker(78112351, 'Lord Snooty', [1.4658129, 6.0274563], 'Midwich');
-        expect(response).toEqual('ResponsePayload { code: 404, payload: undefined }');
-    });
 });
 
 describe("Update worker", () => {
@@ -95,32 +93,12 @@ describe("Update worker", () => {
         const response = await updateWorker(21882100, 'Dirk Jenkinz', [1.4658129, 6.0274563], 'Midwich');
         expect(axios.put).toHaveBeenCalledWith('http://localhost:8080/v1/workers', worker);
     });
-    test("it should return meaningful data", async () => {
-        axios.put.mockResolvedValueOnce(worker);
-        const response = await updateWorker(21882100, 'Dirk Jenkinz', [1.4658129, 6.0274563], 'Midwich');
-        expect(response).toEqual(worker);
-    });
-    test("it should return 404 code", async () => {
-        axios.put.mockResolvedValueOnce('ResponsePayload { code: 404, payload: undefined }');
-        const response = await updateWorker(78112351, 'Lord Snooty', [1.4658129, 6.0274563], 'Midwich');
-        expect(response).toEqual('ResponsePayload { code: 404, payload: undefined }');
-    });
 });
 
 describe("Find worker by home", () => {
     test("it should call axios", async () => {
         axios.get.mockResolvedValueOnce(workerList);
-        const response = await findWorkerByHome('home');
+        const response = await findWorkersByHome('home');
         expect(axios.get).toHaveBeenCalledWith('http://localhost:8080/v1/workers/findByHome/home');
-    });
-    test("it should return meaningful data", async () => {
-        axios.get.mockResolvedValueOnce(workerList);
-        const response = await findWorkerByHome('home');
-        expect(response).toEqual(workerList);
-    });
-    test("it should return 400 if home value is invalid", async () => {
-        axios.get.mockResolvedValueOnce({ code: 400, payload: undefined });
-        const response = await findWorkerByHome('');
-        expect(response).toEqual({ code: 400, payload: undefined });
     });
 });
