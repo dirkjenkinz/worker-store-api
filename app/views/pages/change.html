@@ -16,13 +16,11 @@ Workers Utility - Update
     <form class="form" action="/post-change", method="'post">
   {% call govukFieldset({
     legend: {
-      text: "Changed Worker Details",
+      text: "Change Worker Details",
       classes: "govuk-fieldset__legend--l",
       isPageHeading: true
     }
   }) %}
-
-<h1 id="workerId">{{workerId}}</h1>
 
 {{ govukInput({
   label: {

@@ -57,7 +57,6 @@ const postWorker = async (id, name, location, home) => {
 };
 
 const updateWorker = async (id, name, location, home) => {
-    console.log(id,'<<<')
     const long = location[0];
     const lat = location[1];
     const body = {
