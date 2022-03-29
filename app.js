@@ -13,12 +13,12 @@ const postChangeRouter = require('./app/routes/post-change');
 const getHomeRouter = require('./app/routes/get-home');
 const postHomeRouter = require('./app/routes/post-home');
 const postDeleteRouter = require('./app/routes/post-delete');
+const getFindRouter = require('./app/routes/get-find');
+const postFindRouter = require('./app/routes/post-find');
+
 const {logger} = require('./app/utils')
-
 const { getTimeStamp } = require('./app/utils');
-
 const router = express.Router;
-
 
 nunjucks.configure(['views',
     path.join(__dirname, 'node_modules/govuk-frontend/'),
@@ -43,6 +43,8 @@ app.use('/all', getAllRouter);
 app.use('/add', getAddRouter);
 app.use('/post-add', postAddRouter);
 app.use('/change', getChangeRouter);
+app.use('/find', getFindRouter);
+app.use('/post-find', postFindRouter);
 app.use('/delete', postDeleteRouter);
 app.use('/post-change', postChangeRouter);
 app.use('/home', getHomeRouter);

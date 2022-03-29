@@ -7,8 +7,10 @@ const getChoice = async (req, res) => {
         res.redirect('/all');
     } else if (what === 'add') {
         res.redirect('/add');
-    } else {
+    } else if (what === 'home') {
         res.redirect('/home');
+    } else {
+        res.redirect('/find');
     }
 };
 

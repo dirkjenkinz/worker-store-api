@@ -10,7 +10,7 @@ const getWorker = async (id) => {
     logger.info('getWorker');
     try {
         let response = await axios.get(`http://localhost:8080/v1/workers/${id}`);
-        return response
+        return response.data;
     } catch (error) {
         logger.debug(error.response.status);
         return error.response.status;
@@ -74,7 +74,6 @@ const updateWorker = async (id, name, location, home) => {
         },
         home: home,
     }
-    
     try {
         response = await axios.put('http://localhost:8080/v1/workers', body);
         return response.status;
