@@ -3,7 +3,6 @@ const url = require('url');
 const getChoice = async (req, res) => {
     const u = url.parse(req.originalUrl, true);
     const what = u.query['what-do-you-want-to-do'];
-    console.log(what)
     if (what === 'all') {
         res.redirect('/all');
     } else if (what === 'add') {

@@ -75,10 +75,11 @@ const updateWorker = async (id, name, location, home) => {
         home: home,
     }
     try {
+        console.log('body=', body)
         response = await axios.put('http://localhost:8080/v1/workers', body);
         return response.status;
     } catch (error) {
-        logger.debug('error.response.status;');
+        console.log('error:', error.response.status);
         return error.response.status;
     }
 };
