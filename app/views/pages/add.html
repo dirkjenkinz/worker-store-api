@@ -5,23 +5,31 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block pageTitle %}
 Workers Utility - Add
 {% endblock %}
 
 {% block content %}
+
+{% if errors %}
+  {{ govukErrorSummary({
+    titleText: "There’s a problem.",
+    errorList: errors
+  }) }}
+{% endif %}
+
 <div class="govuk-grid-column-two-thirds">
   <div class="govuk-grid-row">
     <form class="form" action="/add", method="post">
-      
-{% call govukFieldset({
-  legend: {
-    text: "New Worker Details",
-    classes: "govuk-fieldset__legend--l",
-    isPageHeading: true
-  }
-}) %}
+      {% call govukFieldset({
+        legend: {
+          text: "New Worker Details",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
 
   {{ govukInput({
     label: {
@@ -30,7 +38,11 @@ Workers Utility - Add
     classes: "govuk-input--width-10",
     id: "worker-id",
     name: "worker-id",
-    type: "number"
+    type: "number",
+    value: workerId,
+    errorMessage: {
+      text: errorList.worker
+    }
   }) }}
 
   {{ govukInput({
@@ -39,7 +51,11 @@ Workers Utility - Add
     },
     classes: "govuk-input--width-10",
     id: "name",
-    name: "name"
+    name: "name",
+    value: name,
+    errorMessage: {
+      text: errorList.name
+    }
   }) }}
 
   {{ govukInput({
@@ -48,7 +64,11 @@ Workers Utility - Add
     },
     classes: "govuk-input--width-10",
     id: "latitude",
-    name: "latitude"
+    name: "latitude",
+    value: latitude,
+    errorMessage: {
+      text: errorList.latitude
+    }
   }) }}
 
   {{ govukInput({
@@ -57,7 +77,11 @@ Workers Utility - Add
     },
     classes: "govuk-input--width-10",
     id: "longitude",
-    name: "longitude"
+    name: "longitude",
+    value: longitude,
+    errorMessage: {
+      text: errorList.longitude
+    }
   }) }}
 
   {{ govukInput({
@@ -66,12 +90,16 @@ Workers Utility - Add
     },
     classes: "govuk-input--width-10",
     id: "home",
-    name: "home"
+    name: "home",
+    value: home,
+    errorMessage: {
+      text: errorList.home
+    }
   }) }}
 
 {% endcall %}
 
-    {{ govukButton({
+{{ govukButton({
       text: "Add worker"
     }) }}
     </form>
