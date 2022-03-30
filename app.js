@@ -8,11 +8,9 @@ const choiceRouter = require('./app/routes/choice');
 const getAllRouter = require('./app/routes/get-all');
 const addRouter = require('./app/routes/add');
 const changeRouter = require('./app/routes/change');
-const getHomeRouter = require('./app/routes/get-home');
-const postHomeRouter = require('./app/routes/post-home');
+const homeRouter = require('./app/routes/home');
 const postDeleteRouter = require('./app/routes/post-delete');
 const findRouter = require('./app/routes/find');
-const postFindRouter = require('./app/routes/post-find');
 
 const {logger} = require('./app/utils')
 const { getTimeStamp } = require('./app/utils');
@@ -41,10 +39,8 @@ app.use('/all', getAllRouter);
 app.use('/add', addRouter);
 app.use('/change', changeRouter);
 app.use('/find', findRouter);
-app.use('/post-find', postFindRouter);
 app.use('/delete', postDeleteRouter);
-app.use('/home', getHomeRouter);
-app.use('/post-home', postHomeRouter);
+app.use('/home', homeRouter);
 
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
