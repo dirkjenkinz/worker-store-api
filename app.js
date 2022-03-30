@@ -11,7 +11,7 @@ const changeRouter = require('./app/routes/change');
 const getHomeRouter = require('./app/routes/get-home');
 const postHomeRouter = require('./app/routes/post-home');
 const postDeleteRouter = require('./app/routes/post-delete');
-const getFindRouter = require('./app/routes/get-find');
+const findRouter = require('./app/routes/find');
 const postFindRouter = require('./app/routes/post-find');
 
 const {logger} = require('./app/utils')
@@ -40,7 +40,7 @@ app.use('/', landingRouter);
 app.use('/all', getAllRouter);
 app.use('/add', addRouter);
 app.use('/change', changeRouter);
-app.use('/find', getFindRouter);
+app.use('/find', findRouter);
 app.use('/post-find', postFindRouter);
 app.use('/delete', postDeleteRouter);
 app.use('/home', getHomeRouter);

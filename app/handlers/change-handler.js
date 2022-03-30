@@ -17,7 +17,6 @@ const getChange = async (req, res) => {
 
 const postChange = async (req, res) => {
   logger.info('post change handler');
-
   const response = await updateWorker(
     req.body.workerId, req.body.name,
     [req.body.latitude,

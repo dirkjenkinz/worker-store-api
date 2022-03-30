@@ -16,69 +16,72 @@ Workers Utility - Update
   <div class="govuk-grid-row">
     <form class="form" action="/post-find">
       {% call govukFieldset({
-      legend: {
-      text: "Find Worker by ID",
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: true
-      }
+        legend: {
+          text: "Find Worker by ID",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
       }) %}
 
       {{ govukInput({
-      label: {
-      text: "Worker ID"
+        label: {
+        text: "Worker ID"
       },
       classes: "govuk-input--width-10",
-      id: "worker-id",
-      name: "workerId",
-      value: workerId
+        id: "worker-id",
+        name: "workerId",
+        value: workerId
       }) }}
 
       {% endcall %}
+
       {{ govukButton({
-      text: "Find worker"
+        text: "Find worker"
       }) }}
+
     </form>
   </div>
   {% if data !== '' %}
-  <div class="govuk-grid-row">
-    {{ govukTable({
-    caption: "Worker Details",
-    captionClasses: "govuk-table__caption--m",
-    firstCellIsHeader: true,
-    rows: [
-    [
-    {
-    text: "Name"
-    },
-    {
-    text: data.name
-    }
-    ],
-    [
-    {
-    text: "Location (latititude, longitude)"
-    },
-    {
-    text: data.location.latitude+', '+data.location.longitude
-    }
-    ],
-    [
-    {
-    text: "Home"
-    },
-    {
-    text: data.home
-    }
-    ]
-    ]
-    }) }}
-  </div>
+    <div class="govuk-grid-row">
+      {{ govukTable({
+        caption: "Worker Details",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Name"
+              },
+            {
+              text: data.name
+            }
+          ],
+          [
+            {
+              text: "Location (latititude, longitude)"
+            },
+            {
+              text: data.location.latitude+', '+data.location.longitude
+            }
+          ],
+          [
+            {
+              text: "Home"
+            },
+            {
+              text: data.home
+            }
+          ]
+        ]
+      }) }}
+    </div>
   {% endif %}
 </div>
+
 <div class="govuk-grid-row">
   <form class="form" action="/">
     {{ govukButton({
-    text: "Return to landing page"
+      text: "Return to landing page"
     }) }}
   </form>
 </div>

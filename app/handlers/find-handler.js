@@ -1,6 +1,13 @@
+const { logger } = require('../utils');
 const { getWorker } = require('../api');
 const url = require('url');
-const { logger } = require('../utils');
+
+const getFind = async (req, res) => {
+    logger.info('get find handler');
+    res.render('pages/find', {
+        data: '',
+    });
+};
 
 const postFind = async (req, res) => {
   logger.info('post find handler');
@@ -16,3 +23,5 @@ const postFind = async (req, res) => {
 };
 
 module.exports = { postFind };
+
+module.exports = { getFind };
