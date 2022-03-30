@@ -3,15 +3,22 @@ const url = require('url');
 const getChoice = async (req, res) => {
     const u = url.parse(req.originalUrl, true);
     const what = u.query['what-do-you-want-to-do'];
+    console.log(what)
     if (what === 'all') {
         res.redirect('/all');
     } else if (what === 'add') {
-        res.redirect('/add');
+        res.render('pages/add');
     } else if (what === 'home') {
-        res.redirect('/home');
+        res.render('pages/home');
+    } else if (what === 'find') {
+        {
+            res.render('pages/find', {
+                data: '',
+            });
+        }
     } else {
-        res.redirect('/find');
+        res.render('pages/landing')
     }
-};
+}
 
 module.exports = { getChoice };

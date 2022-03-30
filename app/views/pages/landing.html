@@ -5,7 +5,6 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-
 {% block pageTitle %}
 Workers Utility - Landing
 {% endblock %}
@@ -27,7 +26,8 @@ Workers Utility - Landing
         items: [
           {
             value: "all",
-            text: "See a list of all workers"
+            text: "See a list of all workers",
+            checked: true
           },
           {
             value: "home",

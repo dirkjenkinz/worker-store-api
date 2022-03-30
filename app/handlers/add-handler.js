@@ -1,11 +1,5 @@
 const { logger } = require("../utils");
 const { postWorker } = require('../api');
-const url = require('url');
-
-const getAdd = async (req, res) => {
-    logger.info('get add handler');
-    res.render('pages/add');
-};
 
 const postAdd = async (req, res) => {
     logger.info('post add handler');
@@ -22,4 +16,4 @@ const postAdd = async (req, res) => {
     });
 };
 
-module.exports = { getAdd, postAdd };
+module.exports = { postAdd };
