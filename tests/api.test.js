@@ -5,7 +5,6 @@ const {
     getAllWorkers,
     postWorker, updateWorker,
     findWorkersByHome,
-    deleteWorker
 } = require('../app/api');
 
 const axios = require('axios');
@@ -48,21 +47,6 @@ describe("Get worker", () => {
         axios.get.mockResolvedValueOnce(workerDetails);
         const response = await getWorker(21882000);
         expect(axios.get).toHaveBeenCalledWith('http://localhost:8080/v1/workers/21882000');
-    });
-    test("it should return meaningful data", async () => {
-        axios.get.mockResolvedValueOnce(workerDetails);
-        const response = await getWorker(21882000);
-        expect(response).toEqual(workerDetails);
-    });
-    test("it should return 400 code", async () => {
-        axios.get.mockResolvedValueOnce('ResponsePayload { code: 400, payload: undefined }');
-        const response = await getWorker(218820099); // get invalid ID
-        expect(response).toEqual('ResponsePayload { code: 400, payload: undefined }', worker);
-    });
-    test("it should return 404 code", async () => {
-        axios.get.mockResolvedValueOnce('ResponsePayload { code: 404, payload: undefined }');
-        const response = await getWorker(21882001); // non-existent but valid ID
-        expect(response).toEqual('ResponsePayload { code: 404, payload: undefined }', worker);
     });
 });
 
