@@ -14,7 +14,7 @@ Workers Utility - Update
 {% block content %}
 <div class="govuk-grid-column-two-thirds">
   <div class="govuk-grid-row">
-    <form class="form" action="/post-find">
+    <form class="form" action="/find", method="post">
       {% call govukFieldset({
         legend: {
           text: "Find Worker by ID",

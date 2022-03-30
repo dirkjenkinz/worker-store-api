@@ -1,11 +1,11 @@
-const { deleteWorker } = require('../api');
+const { deleteWorkerAPI } = require('../api');
 const url = require('url');
 const { logger } = require('../utils');
 
 const deleteWorker = async (req, res) => {
-  logger.info('post delete handler');
+  logger.info('delete worker handler');
   const u = url.parse(req.originalUrl, true);
-  const response = await deleteWorker(u.query.workerId);
+  const response = await deleteWorkerAPI(u.query.workerId);
   res.redirect('/all');
 };
 

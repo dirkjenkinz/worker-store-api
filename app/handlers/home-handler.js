@@ -6,7 +6,7 @@ const postHome = async (req, res) => {
   const response = await findWorkersByHome(req.body.home);
   res.render('pages/home-list', { 
     data: response.data,
-    home: u.query.home,
+    home: req.body.home,
   });
 };
 

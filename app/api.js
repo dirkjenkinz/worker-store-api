@@ -17,7 +17,7 @@ const getWorker = async (id) => {
     }
 };
 
-const deleteWorker = async (id) => {
+const deleteWorkerAPI = async (id) => {
     logger.info('deleteWorker');
     try {
         let response = await axios.delete(`http://localhost:8080/v1/workers/${id}`);
@@ -89,5 +89,5 @@ module.exports = {
     postWorker,
     updateWorker,
     findWorkersByHome,
-    deleteWorker
+    deleteWorkerAPI
 };
