@@ -12,7 +12,7 @@ const getWorker = async (id) => {
         let response = await axios.get(`http://localhost:8080/v1/workers/${id}`);
         return response.data;
     } catch (error) {
-        logger.debug(error.response.status);
+        logger.error(error.response.status);
         return error.response.status;
     }
 };
@@ -23,7 +23,7 @@ const deleteWorkerAPI = async (id) => {
         let response = await axios.delete(`http://localhost:8080/v1/workers/${id}`);
         return response.status
     } catch (error) {
-        logger.debug(error.response.status);
+        logger.error(error.response.status);
         return error.response.status;
     }
 };
@@ -34,7 +34,7 @@ const getAllWorkers = async () =>{
         let response = await axios.get(`http://localhost:8080/v1/workers`);
         return response
     } catch (error) {
-        logger.debug(error.response.status);
+        logger.error(error.response.status);
         return error.response.status;
     }
 };
@@ -56,7 +56,7 @@ const postWorker = async (id, name, location, home) => {
         response = await axios.post('http://localhost:8080/v1/workers', body);
         return response.status
     } catch (error) {
-        logger.debug(error.response.statusText);
+        logger.error(error.response.statusText);
         return error.response.status;
     }
 };
@@ -75,11 +75,10 @@ const updateWorker = async (id, name, location, home) => {
         home: home,
     }
     try {
-        console.log('body=', body)
         response = await axios.put('http://localhost:8080/v1/workers', body);
         return response.status;
     } catch (error) {
-        console.log('error:', error.response.status);
+        logger.error('error:', error.response.status);
         return error.response.status;
     }
 };
