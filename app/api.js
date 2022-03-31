@@ -8,7 +8,6 @@ const findWorkersByHome = async (home) => {
 
 const getWorker = async (id) => {
     logger.info('getWorker');
-    console.log('id=', id)
     try {
         let response = await axios.get(`http://localhost:8080/v1/workers/${id}`);
         return response.data;

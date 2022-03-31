@@ -18,6 +18,8 @@ Workers Utility - All Workers
         <th class="govuk-table__header">Name</th>
         <th class="govuk-table__header">Location (Latitude, Longitude)</th>
         <th class="govuk-table__header">Home</th>
+        <th class="govuk-table__header"></th>
+        <th class="govuk-table__header"></th>
       </tr>
     </thead>
 
@@ -28,8 +30,8 @@ Workers Utility - All Workers
         <td class="govuk-table__cell" id='name{{loop.index}}'>{{item.name}}</td>
         <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}}, {{item.location.longitude}}</td>
         <td class="govuk-table__cell" id='home{{loop.index}}'>{{item.home}}</td>
-        <td class="govuk-table__cell"><button id='del{{loop.index}}' onclick="changeItem(this.id)">Change Details</button></td>
-        <td class="govuk-table__cell"><button id='del{{loop.index}}' onclick="delItem(this.id)">Delete</button></td>
+        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='chg{{loop.index}}' onclick="changeItem(this.id)">Change</button></td>
+        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='del{{loop.index}}' onclick="delItem(this.id)">Delete</button></td>
       </tr>
       {% endfor %}
     </tbody>
