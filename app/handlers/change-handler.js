@@ -6,6 +6,7 @@ const getChange = async (req, res) => {
   logger.info('change handler - get');
   const u = url.parse(req.originalUrl, true);
   const what = u.query['what-do-you-want-to-do'];
+  console.log('1.', u.query);
   res.render('pages/change', {
     workerId: u.query.workerId,
     name: u.query.name,
@@ -16,6 +17,7 @@ const getChange = async (req, res) => {
 };
 
 const postChange = async (req, res) => {
+  console.log('2.', req.body)
   logger.info('change handler - post');
   const response = await updateWorker(
     req.body.workerId, req.body.name,

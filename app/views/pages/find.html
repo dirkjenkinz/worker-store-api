@@ -6,6 +6,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "../macros/input-macro.njk" import inputMacro %}
 
 {% block pageTitle %}
 Workers Utility - Update
@@ -15,31 +16,35 @@ Workers Utility - Update
 <div class="govuk-grid-column-two-thirds">
   <div class="govuk-grid-row">
     <form class="form" action="/find", method="post">
-      {% call govukFieldset({
-        legend: {
-          text: "Find Worker by ID",
-          classes: "govuk-fieldset__legend--l",
-          isPageHeading: true
-        }
-      }) %}
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Find a worker by ID
+          </h1>
+        </legend>
+        
+        {{ inputMacro(
+          name = "worker-id",
+          label = "Worker ID",
+          value = workerId,
+          errorMessage = errorList.worker,
+          type = 'number'
+        ) }}
 
-      {{ govukInput({
-        label: {
-        text: "Worker ID"
-      },
-      classes: "govuk-input--width-10",
-        id: "worker-id",
-        name: "workerId",
-        value: workerId
-      }) }}
-
-      {{ govukButton({
-        text: "Find worker"
-      }) }}
-      {% endcall %}
+        {{ govukButton({
+          text: "Find worker"
+        }) }}
+      </fieldset>
     </form>
   </div>
-  {% if data !== '' %}
+  <div class="govuk-grid-row">
+    <p>Worker id: {{workerId}}</p>
+  </div>
+  {% if data === 500 %}
+  <div class="govuk-grid-row">
+    <p>Worker not found</p>
+  </div>
+  {% elseif data !== '' %}
     <div class="govuk-grid-row">
       {{ govukTable({
         caption: "Worker Details",
@@ -74,12 +79,12 @@ Workers Utility - Update
       }) }}
     </div>
   {% endif %}
-  <div class="govuk-grid-row"></div>
-  <form class="form" action="/">
-    {{ govukButton({
-      text: "Return to landing page"
-    }) }}
-  </form>
+  <div class="govuk-grid-row">
+    <form class="form" action="/">
+      {{ govukButton({
+        text: "Return to landing page"
+      }) }}
+    </form>
   </div>
 </div>
 {% endblock %}
