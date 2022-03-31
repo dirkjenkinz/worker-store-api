@@ -33,12 +33,10 @@ Workers Utility - Update
         value: workerId
       }) }}
 
-      {% endcall %}
-
       {{ govukButton({
         text: "Find worker"
       }) }}
-
+      {% endcall %}
     </form>
   </div>
   {% if data !== '' %}
@@ -76,13 +74,12 @@ Workers Utility - Update
       }) }}
     </div>
   {% endif %}
-</div>
-
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row"></div>
   <form class="form" action="/">
     {{ govukButton({
       text: "Return to landing page"
     }) }}
   </form>
+  </div>
 </div>
 {% endblock %}

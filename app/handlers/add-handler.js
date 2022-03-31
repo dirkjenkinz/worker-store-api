@@ -2,6 +2,7 @@ const { logger } = require("../utils");
 const { postWorker } = require('../api');
 
 const postAdd = async (req, res) => {
+    logger.info('post add handler');
     const errors = checkForErrors(req.body);
     if (errors.length > 0) {
         const errorList = errors[errors.length - 1];
@@ -16,7 +17,6 @@ const postAdd = async (req, res) => {
         });
         return;
     };
-    logger.info('post add handler');
     const response = await postWorker(
         req.body['worker-id'],
         req.body.name,
