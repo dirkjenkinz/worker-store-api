@@ -22,86 +22,129 @@ Workers Utility - Add
 
 <div class="govuk-grid-column-two-thirds">
   <div class="govuk-grid-row">
+    
     <form class="form" action="/add", method="post">
-      {% call govukFieldset({
-        legend: {
-          text: "New Worker Details",
-          classes: "govuk-fieldset__legend--l",
-          isPageHeading: true
-        }
-      }) %}
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Add new worker to database
+          </h1>
+        </legend>
 
-  {{ govukInput({
-    label: {
-      text: "Worker ID"
-    },
-    classes: "govuk-input--width-10",
-    id: "worker-id",
-    name: "worker-id",
-    type: "number",
-    value: workerId,
-    errorMessage: {
-      text: errorList.worker
-    }
-  }) }}
+      {% if errorList.worker %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="worker-id">
+            Worker ID
+          </label>  
+          <p id="worker-id-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{errorList.worker}}
+          </p>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" 
+            id="worker-id" name="worker-id" type="number" 
+            aria-describedby="worker-id-error" value={{workerId}}>
+        </div>
+      {% else %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="worker-id">
+            Worker ID
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="worker-id" 
+            name="worker-id" type="number" value={{workerId}}>
+        </div>
+      {% endif %}
 
-  {{ govukInput({
-    label: {
-      text: "Name"
-    },
-    classes: "govuk-input--width-10",
-    id: "name",
-    name: "name",
-    value: name,
-    errorMessage: {
-      text: errorList.name
-    }
-  }) }}
+      {% if errorList.name %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="name">
+            Name
+          </label>  
+          <p id="name-id-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{errorList.name}}
+          </p>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" 
+            id="name" name="name" type="text" 
+            aria-describedby="name-id-error" value={{name}}>
+        </div>
+      {% else %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="name-id">
+            Name
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="name-id" 
+            name="name" type="text" value={{name}}>
+        </div>
+      {% endif %}   
 
-  {{ govukInput({
-    label: {
-      text: 'Latitude'
-    },
-    classes: "govuk-input--width-10",
-    id: "latitude",
-    name: "latitude",
-    value: latitude,
-    errorMessage: {
-      text: errorList.latitude
-    }
-  }) }}
+      {% if errorList.latitude %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="latitude">
+            Latitude
+          </label>  
+          <p id="latitude-id-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{errorList.latitude}}
+          </p>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" 
+            id="latitude" name="latitude" type="text" 
+            aria-describedby="latitude-id-error" value={{latitude}}>
+        </div>
+      {% else %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="latitude-id">
+            Latitude
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="latitude-id" 
+            name="latitude" type="text" value={{latitude}}>
+        </div>
+      {% endif %}
 
-  {{ govukInput({
-    label: {
-      text: 'Longitude'
-    },
-    classes: "govuk-input--width-10",
-    id: "longitude",
-    name: "longitude",
-    value: longitude,
-    errorMessage: {
-      text: errorList.longitude
-    }
-  }) }}
+      {% if errorList.longitude %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="longitude">
+            Longitude
+          </label>  
+          <p id="longitude-id-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{errorList.longitude}}
+          </p>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" 
+            id="longitude" name="longitude" type="text" 
+            aria-describedby="longitude-id-error" value={{longitude}}>
+        </div>
+      {% else %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="longitude-id">
+            Longitude
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="longitude-id" 
+            name="longitude" type="text" value={{longitude}}>
+        </div>
+      {% endif %} 
 
-  {{ govukInput({
-    label: {
-      text: "Home"
-    },
-    classes: "govuk-input--width-10",
-    id: "home",
-    name: "home",
-    value: home,
-    errorMessage: {
-      text: errorList.home
-    }
-  }) }}
+      {% if errorList.home %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="home">
+            Home
+          </label>  
+          <p id="home-id-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{errorList.home}}
+          </p>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" 
+            id="home" name="home" type="text" 
+            aria-describedby="home-id-error" value={{home}}>
+        </div>
+      {% else %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="home-id">
+            Home
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="home-id" 
+            name="home" type="text" value={{home}}>
+        </div>
+      {% endif %}
 
-{% endcall %}
-
-{{ govukButton({
-      text: "Add worker"
-    }) }}
+      {{ govukButton({
+        text: "Add worker"
+      }) }}
+    </fieldset>
     </form>
   </div>
 </div>
