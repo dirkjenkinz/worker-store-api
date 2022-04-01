@@ -3,8 +3,9 @@
 {% extends "layout/layout.html" %}
 {% from "input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../macros/input-macro.njk" import inputMacro %}
+
 
 {% block pageTitle %}
 Workers Utility - Find by Home
@@ -21,14 +22,14 @@ Workers Utility - Find by Home
       isPageHeading: true
     }
   }) %}
-  {{ govukInput({
-    label: {
-      text: "Home"
-    },
-    classes: "govuk-input--width-10",
-    id: "home",
-    name: "home"
-  }) }}
+
+  {{ inputMacro(
+    name = "home",
+    label = "Home",
+    value = home,
+    errorMessage = errorList.home
+  ) }}
+
 {% endcall %}
     {{ govukButton({
       text: "Get List"
