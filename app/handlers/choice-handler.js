@@ -8,7 +8,11 @@ const getChoice = async (req, res) => {
     } else if (what === 'add') {
         res.render('pages/add');
     } else if (what === 'home') {
-        res.render('pages/home');
+        {
+            res.render('pages/home', {
+                data: '',
+            });
+        }
     } else if (what === 'find') {
         {
             res.render('pages/find', {

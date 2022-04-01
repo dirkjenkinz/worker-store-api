@@ -13,16 +13,16 @@ Workers Utility - Update
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-column-two-thirds">
-  <div class="govuk-grid-row">
-    <form class="form" action="/find", method="post">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/find" , method="post">
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Find a worker by ID
+            Find a worker by ID (8 digits)
           </h1>
         </legend>
-        
+
         {{ inputMacro(
           name = "worker-id",
           label = "Worker ID",
@@ -36,16 +36,10 @@ Workers Utility - Update
         }) }}
       </fieldset>
     </form>
-  </div>
-  <div class="govuk-grid-row">
     <p>Worker id: {{workerId}}</p>
-  </div>
-  {% if data === 500 %}
-  <div class="govuk-grid-row">
-    <p>Worker not found</p>
-  </div>
-  {% elseif data !== '' %}
-    <div class="govuk-grid-row">
+    {% if data === 500 %}
+      <p>Worker not found</p>
+    {% elseif data !== '' %}
       {{ govukTable({
         caption: "Worker Details",
         captionClasses: "govuk-table__caption--m",
@@ -54,7 +48,7 @@ Workers Utility - Update
           [
             {
               text: "Name"
-              },
+            },
             {
               text: data.name
             }
@@ -65,7 +59,7 @@ Workers Utility - Update
             },
             {
               text: data.location.latitude+', '+data.location.longitude
-            }
+             }
           ],
           [
             {
@@ -77,9 +71,10 @@ Workers Utility - Update
           ]
         ]
       }) }}
-    </div>
-  {% endif %}
-  <div class="govuk-grid-row">
+    {% endif %}
+  </div>
+
+  <div class="govuk-grid-column-one-third">
     <form class="form" action="/">
       {{ govukButton({
         text: "Return to landing page"

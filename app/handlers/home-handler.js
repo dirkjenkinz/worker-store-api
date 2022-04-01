@@ -3,20 +3,21 @@ const { findWorkersByHome } = require('../api');
 
 const postHome = async (req, res) => {
   logger.info('post home handler');
-
+  console.log('body=', req.body);
   const errors = checkForErrors(req.body);
     if (errors.length > 0) {
         const errorList = errors[errors.length - 1];
         res.render('pages/home', {
-            "errors": errors,
-            "errorList": errorList,
-            "home": req.body.home
+            errors: errors,
+            errorList: errorList,
+            home: req.body.home,
+            data: '',
         });
         return;
     };
 
   const response = await findWorkersByHome(req.body.home);
-  res.render('pages/home-list', { 
+  res.render('pages/home', { 
     data: response.data,
     home: req.body.home,
   });
