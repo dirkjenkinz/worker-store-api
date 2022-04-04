@@ -1,15 +1,17 @@
 const axios = require('axios');
 const { logger } = require('./utils');
+const config = require('./config/config');
+
 const findWorkersByHome = async (home) => {
     logger.info('findWorkersByHome');
-    let response = await axios.get(`http://localhost:8080/v1/workers/findByHome/${home}`);
+    let response = await axios.get(`${config.api}/findByHome/${home}`);
     return response;
 };
 
 const getWorker = async (id) => {
     logger.info('getWorker');
     try {
-        let response = await axios.get(`http://localhost:8080/v1/workers/${id}`);
+        let response = await axios.get(`${config.api}/${id}`);
         return response.data;
     } catch (error) {
         logger.error(error.response.status);
@@ -20,7 +22,7 @@ const getWorker = async (id) => {
 const deleteWorkerAPI = async (id) => {
     logger.info('deleteWorker');
     try {
-        let response = await axios.delete(`http://localhost:8080/v1/workers/${id}`);
+        let response = await axios.delete(`${config.api}/${id}`);
         return response.status
     } catch (error) {
         logger.error(error.response.status);
@@ -30,8 +32,9 @@ const deleteWorkerAPI = async (id) => {
 
 const getAllWorkers = async () =>{
     logger.info('getAllworkers');
+    console.log(process.env.API_URL)
     try {
-        let response = await axios.get(`http://localhost:8080/v1/workers`);
+        let response = await axios.get(`${config.api}`)
         return response
     } catch (error) {
         logger.error(error.response.status);
@@ -53,7 +56,7 @@ const postWorker = async (id, name, location, home) => {
         home: home,
     }
     try {
-        response = await axios.post('http://localhost:8080/v1/workers', body);
+        response = await axios.post(`${config.api}`, body);
         return response.status
     } catch (error) {
         logger.error(error.response.statusText);
@@ -75,7 +78,7 @@ const updateWorker = async (id, name, location, home) => {
         home: home,
     }
     try {
-        response = await axios.put('http://localhost:8080/v1/workers', body);
+        response = await axios.put(`${config.api}`, body);
         return response.status;
     } catch (error) {
         logger.error('error:', error.response.status);
