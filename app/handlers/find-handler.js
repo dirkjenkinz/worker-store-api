@@ -15,7 +15,8 @@ const postFind = async (req, res) => {
         return;
     };
   let response = await getWorker(req.body["worker-id"]);
-  logger.info('response=', response);
+  logger.debug(response);
+  
   res.render('pages/find', { 
     data: response,
     workerId: req.body["worker-id"],

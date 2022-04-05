@@ -1,4 +1,4 @@
-const { logger } = require("../utils");
+const { logger, makeTitleCase } = require("../utils");
 const { postWorker } = require('../api');
 
 const postAdd = async (req, res) => {
@@ -17,12 +17,16 @@ const postAdd = async (req, res) => {
         });
         return;
     };
+    const home = makeTitleCase(req.body.home);
+
     const response = await postWorker(
         req.body['worker-id'],
         req.body.name,
         [req.body.latitude, req.body.longitude],
-        req.body.home
+        home
     );
+    logger.debug(response);
+    
     res.render('pages/added-worker', {
         response: response,
         details: req.body

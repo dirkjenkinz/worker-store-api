@@ -1,7 +1,7 @@
 const express = require('express');
+let app = express();
 const path = require('path');
 const nunjucks = require('nunjucks');
-let app = express();
 const bodyParser = require('body-parser');
 const landingRouter = require('./app/routes/landing');
 const choiceRouter = require('./app/routes/choice');
@@ -12,10 +12,19 @@ const homeRouter = require('./app/routes/home');
 const findRouter = require('./app/routes/find');
 const deleteRouter = require('./app/routes/delete-worker');
 const config = require('./app/config/config');
-
-const {logger} = require('./app/utils')
+const helmet = require('helmet');
+const csp = require('helmet-csp');
+const { v4: uuid_v4 } = require('uuid');
+const { logger } = require('./app/utils')
 const { getTimeStamp } = require('./app/utils');
 const router = express.Router;
+
+/* Generate nonce. */
+const nonce = Buffer.from(uuid_v4().toString('base64'));
+app.use((req, res, next) => {
+  res.locals.nonce = nonce;
+  next();
+});
 
 nunjucks.configure(['views',
     path.join(__dirname, 'node_modules/govuk-frontend/'),
@@ -33,6 +42,26 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(helmet());
+
+app.use(csp({
+    directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        scriptSrc: [
+            "'self'",
+            `'nonce-${nonce}'`, // Pass the nonce value along.
+            "'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='",
+          ],
+        imgSrc: ["'self'"],
+        fontSrc: ["'self'"]
+    }
+}));
+
+// referrerPolicy
+app.use(helmet.referrerPolicy({ policy: 'no-referrer-when-downgrade' }));
+
+// routing via express.js
 app.use('/css', express.static(path.resolve(__dirname, 'app/public/css')));
 app.use('/choice', choiceRouter);
 app.use('/', landingRouter);

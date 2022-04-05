@@ -27,9 +27,11 @@
     "dotenv": "^16.0.0",
     "govuk-frontend": "^4.0.1",
     "helmet": "^5.0.2",
+    "helmet-csp": "^3.4.0",
     "nocache": "^3.0.1",
     "nunjucks": "^3.2.3",
     "path": "^0.12.7",
+    "uuid": "^8.3.2",
     "winston": "^3.6.0"
   }
 }

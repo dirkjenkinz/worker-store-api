@@ -17,14 +17,14 @@ const getChange = async (req, res) => {
 
 const postChange = async (req, res) => {
   logger.info('change handler - post');
-  logger.info('changing'+req.body)
   const response = await updateWorker(
     req.body.workerId, req.body.name,
     [req.body.latitude,
     req.body.longitude],
     req.body.home
   );
-  logger.info('response = '+response);
+  logger.debug(response);
+  
   res.redirect('/all');
 };
 

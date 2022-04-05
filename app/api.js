@@ -31,8 +31,8 @@ const deleteWorkerAPI = async (id) => {
 };
 
 const getAllWorkers = async () =>{
-    logger.info('getAllworkers');
-    console.log(process.env.API_URL)
+    logger.info('API - getAllworkers');
+    
     try {
         let response = await axios.get(`${config.api}`)
         return response

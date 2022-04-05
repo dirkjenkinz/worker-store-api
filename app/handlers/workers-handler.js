@@ -5,6 +5,8 @@ const { logger } = require('../utils');
 const getWorkerDetails = async (req, res) => {
     logger.info('workers handler');
     const response = await getWorker(21882000);
+    logger.debug(response);
+
     res.render('pages/workers', {
         rc: response.status,
         id: response.data.workerId,

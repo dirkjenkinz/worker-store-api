@@ -1,11 +1,10 @@
 const winston = require('winston');
- 
 
 const myformat = winston.format.combine(
-  winston.format.colorize(),
-  winston.format.timestamp(),
-  winston.format.align(),
-  winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+    winston.format.colorize(),
+    winston.format.timestamp(),
+    winston.format.align(),
+    winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
 );
 
 const logger = winston.createLogger({
@@ -13,7 +12,7 @@ const logger = winston.createLogger({
         new winston.transports.Console({
             format: myformat
         }),
-        new winston.transports.File({'filename': 'app.log'})
+        new winston.transports.File({ 'filename': 'app.log' })
     ]
 });
 
@@ -34,6 +33,15 @@ const getTimeStamp = () => {
     sec = (sec < 10 ? "0" : "") + sec;
     let time = `${hour}:${min}:${sec}`;
     return [date, time];
-}
+};
 
-module.exports = {getTimeStamp, logger};
+const makeTitleCase = (home) => {
+    return home.replace(
+        /\w\S*/g,
+        function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    );
+};
+
+module.exports = { getTimeStamp, logger, makeTitleCase };
