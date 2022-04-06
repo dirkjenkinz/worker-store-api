@@ -2,16 +2,10 @@ const axios = require('axios');
 const { logger } = require('./utils');
 const config = require('./config/config');
 
-const findWorkersByHome = async (home) => {
-    logger.info('findWorkersByHome');
-    let response = await axios.get(`${config.api}/findByHome/${home}`);
-    return response;
-};
-
-const getWorker = async (id) => {
-    logger.info('getWorker');
+const getLocationAPI = async (name) => {
+    logger.info('get location API');
     try {
-        let response = await axios.get(`${config.api}/${id}`);
+        const response = await axios.get(`${config.api}/${name}`);
         return response.data;
     } catch (error) {
         logger.error(error.response.status);
@@ -19,22 +13,26 @@ const getWorker = async (id) => {
     }
 };
 
-const deleteWorkerAPI = async (id) => {
-    logger.info('deleteWorker');
+const deleteLocationAPI = async (name) => {
+    logger.info('delete location API');
+    console.log(config.api);
+    console.log('>>>>', name)
     try {
-        let response = await axios.delete(`${config.api}/${id}`);
+        const response = await axios.delete(`${config.api}/${name}`);
+        console.log('response=', response)
         return response.status
     } catch (error) {
+        console.log('error=', error)
         logger.error(error.response.status);
         return error.response.status;
     }
 };
 
-const getAllWorkers = async () =>{
-    logger.info('API - getAllworkers');
-    
+const getLocationsAPI = async () => {
+    logger.info('get locations API');
     try {
-        let response = await axios.get(`${config.api}`)
+        const response = await axios.get(`${config.api}`);
+        console.log(response.data)
         return response
     } catch (error) {
         logger.error(error.response.status);
@@ -42,20 +40,18 @@ const getAllWorkers = async () =>{
     }
 };
 
-const postWorker = async (id, name, location, home) => {
-    logger.info('postWorker');
-    const long = location[0];
-    const lat = location[1];
+const postLocationAPI = async (name, latitude, longitude) => {
+    logger.info('post location API');
+    console.log(name, latitude, longitude);
     const body = {
-        workerId: parseInt(id),
-        name: name,
+        locationName: name,
         location: {
-            longitude: Number(long),
-            latitude: Number(lat),
-        },
-        home: home,
+            latitude: Number(latitude),
+            longitude: Number(longitude)
+        }
     }
     try {
+        console.log('body=', body);
         response = await axios.post(`${config.api}`, body);
         return response.status
     } catch (error) {
@@ -64,19 +60,15 @@ const postWorker = async (id, name, location, home) => {
     }
 };
 
-const updateWorker = async (id, name, location, home) => {
-    logger.info('updateWorker');
-    const long = location[0];
-    const lat = location[1];
+const updateLocationAPI = async (name, latitude, longitude) => {
+    logger.info('update location API');
     const body = {
-        workerId: parseInt(id),
         name: name,
         location: {
             longitude: Number(long),
             latitude: Number(lat),
-        },
-        home: home,
-    }
+        }
+    };
     try {
         response = await axios.put(`${config.api}`, body);
         return response.status;
@@ -86,11 +78,10 @@ const updateWorker = async (id, name, location, home) => {
     }
 };
 
-module.exports = { 
-    getWorker, 
-    getAllWorkers, 
-    postWorker,
-    updateWorker,
-    findWorkersByHome,
-    deleteWorkerAPI
+module.exports = {
+    getLocationAPI,
+    deleteLocationAPI,
+    getLocationsAPI,
+    postLocationAPI,
+    updateLocationAPI,
 };

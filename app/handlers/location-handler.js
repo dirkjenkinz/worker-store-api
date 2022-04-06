@@ -1,16 +1,17 @@
 const { logger, makeTitleCase } = require("../utils");
-const { findWorkersByHome } = require('../api');
+const { findlocation } = require('../api');
 
-const postHome = async (req, res) => {
-  logger.info('post home handler');
+const postLocation = async (req, res) => {
+  logger.info('post location handler');
   const errors = checkForErrors(req.body);
   if (errors.length > 0) {
     const errorList = errors[errors.length - 1];
     res.render('pages/home', {
       errors: errors,
       errorList: errorList,
-      home: req.body.home,
-      data: '',
+      locationName: req.body.locationName,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
     });
     return;
   };
@@ -51,4 +52,4 @@ const checkForErrors = ((body) => {
   return errors;
 });
 
-module.exports = { postHome };
+module.exports = { postLocation };

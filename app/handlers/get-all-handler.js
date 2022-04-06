@@ -1,20 +1,21 @@
-const { getAllWorkers } = require('../api');
+const { getLocationsAPI } = require('../api');
 const { logger } = require('../utils');
 
-const getAllDetails = async (req, res) => {
+const getAllLocations = async (req, res) => {
+    
     logger.info('get all handler');
-    const response = await getAllWorkers();
-    logger.debug(response);
 
+    const response = await getLocationsAPI();
+    logger.debug(response);
     let list = response.data;
     list.sort((a,b) => {
-        return a.workerId - b.workerId;
+        return a.locationName - b.locationName;
     });
 
     res.render('pages/all', {
         rc: response.status,
-        list: list,
+        list: list
     });
 };
 
-module.exports = { getAllDetails };
+module.exports = { getAllLocations };

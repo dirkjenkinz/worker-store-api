@@ -26,21 +26,13 @@ Workers Utility - Add
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Add new worker to database
+            Add a location
           </h1>
         </legend>
         
         {{ inputMacro(
-          name = "worker-id",
-          label = "Worker ID (8 digits)",
-          value = workerId,
-          errorMessage = errorList.worker,
-          type = 'number'
-        ) }}
-
-        {{ inputMacro(
           name = "name",
-          label = "Name",
+          label = "Location Name",
           value = name,
           errorMessage = errorList.name
         ) }}
@@ -59,15 +51,8 @@ Workers Utility - Add
           errorMessage = errorList.longitude
         ) }}
 
-        {{ inputMacro(
-          name = "home",
-          label = "Home",
-          value = home,
-          errorMessage = errorList.home
-        ) }}
-
       {{ govukButton({
-        text: "Add worker"
+        text: "Add location"
       }) }}
     </fieldset>
     </form>

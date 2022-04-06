@@ -7,9 +7,9 @@ const getChoice = async (req, res) => {
         res.redirect('/all');
     } else if (what === 'add') {
         res.render('pages/add');
-    } else if (what === 'home') {
+    } else if (what === 'location') {
         {
-            res.render('pages/home', {
+            res.render('pages/location', {
                 data: '',
             });
         }

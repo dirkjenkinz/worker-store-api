@@ -8,7 +8,7 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 {% block pageTitle %}
-Workers Utility - Added Worker
+Workers Utility - Add Location Result
 {% endblock %}
 
 {% block content %}
@@ -16,9 +16,9 @@ Workers Utility - Added Worker
   <div class="govuk-grid-row">
     <form class="form" action="/">
       {% if response === 200 %}
-        {% set status = 'Worker successfully added' %}
+        {% set status = 'Location successfully added' %}
       {% else %}
-        {% set status = 'Failed - worker not added' %}
+        {% set status = 'Failed - location not added' %}
       {% endif %}
 
       {% call govukFieldset({
@@ -29,24 +29,16 @@ Workers Utility - Added Worker
          }
       }) %}
       {{ govukTable({
-        caption: "Details of worker",
+        caption: "Details of Location",
         captionClasses: "govuk-table__caption--m",
         firstCellIsHeader: true,
-        head: [
-          {
-            text: "Worker Name"
-          },
-          {
-            text: details.name
-          }
-        ],
         rows: [
           [
             {
-              text: "Worker ID"
+              text: "Name"
             },
             {
-              text: details['worker-id']
+              text: details.name
             }
           ],
           [
@@ -63,14 +55,6 @@ Workers Utility - Added Worker
             },
             {
               text: details.longitude
-            }
-          ],
-          [
-            {
-              text: "Home"
-            },
-            {
-              text: details.home
             }
           ]
         ]
