@@ -35,8 +35,8 @@ const getTimeStamp = () => {
     return [date, time];
 };
 
-const makeTitleCase = (home) => {
-    return home.replace(
+const makeTitleCase = (item) => {
+    return item.replace(
         /\w\S*/g,
         function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();

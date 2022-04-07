@@ -1,5 +1,5 @@
 const { logger, makeTitleCase } = require('../utils');
-const { postWorker } = require('../api');
+const { postLocationAPI } = require('../api');
 
 const postAdd = async (req, res) => {
     logger.info('post add handler');
@@ -8,17 +8,20 @@ const postAdd = async (req, res) => {
         const errorList = errors[errors.length - 1];
         res.render('pages/add', {
             errors: errors,
+<<<<<<< HEAD
             workerId: req.body.workerId,
+=======
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
             name: req.body.name,
             latitude: req.body.latitude,
             longitude: req.body.longitude,
-            home: req.body.home,
             errorList: errorList,
         });
         return;
     };
-    const home = makeTitleCase(req.body.home);
+    const name = makeTitleCase(req.body.name);
 
+<<<<<<< HEAD
     const response = await postWorker(
         req.body.workerId,
         req.body.name,
@@ -29,6 +32,16 @@ const postAdd = async (req, res) => {
     logger.debug(response);
 
     res.render('pages/added-worker', {
+=======
+    const response = await postLocationAPI(
+        req.body.name,
+        req.body.latitude,
+        req.body.longitude
+    );
+    logger.debug(response);
+    
+    res.render('pages/added-location', {
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
         response: response,
         details: req.body
     });
@@ -38,6 +51,7 @@ const checkForErrors = ((body) => {
 
     let errors = [];
     let errorList = {};
+<<<<<<< HEAD
 
     if (body.workerId.length === 0) {
         errors.push(
@@ -56,6 +70,8 @@ const checkForErrors = ((body) => {
         );
         errorList.worker = 'Worker ID must be exactly 8 digits long';
     };
+=======
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
 
     if (body.name.length == 0) {
         errors.push(
@@ -102,6 +118,7 @@ const checkForErrors = ((body) => {
         );
         errorList.longitude = 'Incorrect format for longitude';
     };
+<<<<<<< HEAD
 
     if (body.home.length == 0) {
         errors.push(
@@ -113,6 +130,9 @@ const checkForErrors = ((body) => {
         errorList.home = 'Home is Mandatory';
     };
 
+=======
+    
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
     if (errors.length > 0) {
         errors.push(errorList);
     };

@@ -1,23 +1,27 @@
 const url = require('url');
+<<<<<<< HEAD
 const { logger, makeTitleCase } = require('../utils');
 const { updateWorker } = require('../api');
+=======
+const { logger } = require('../utils');
+const { updateLocationAPI } = require('../api');
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
 
 const getChange = async (req, res) => {
   logger.info('change handler - get');
   const u = url.parse(req.originalUrl, true);
   const what = u.query['what-do-you-want-to-do'];
   res.render('pages/change', {
-    workerId: u.query.workerId,
     name: u.query.name,
     latitude: u.query.latitude,
     longitude: u.query.longitude,
-    home: u.query.home
   });
 };
 
 const postChange = async (req, res) => {
   logger.info('change handler - post');
   const errors = checkForErrors(req.body);
+<<<<<<< HEAD
   
   if (errors.length > 0) {
     const errorList = errors[errors.length - 1];
@@ -40,6 +44,23 @@ const postChange = async (req, res) => {
     req.body.latitude,
     req.body.longitude,
     req.body.home
+=======
+    if (errors.length > 0) {
+        const errorList = errors[errors.length - 1];
+        res.render('pages/change', {
+            errors: errors,
+            name: req.body.name,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            errorList: errorList,
+        });
+        return;
+    };
+  const response = await updateLocationAPI(
+    req.body.name,
+    [req.body.latitude,
+    req.body.longitude],
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
   );
   logger.debug(response);
 
@@ -47,6 +68,7 @@ const postChange = async (req, res) => {
 };
 
 const checkForErrors = ((body) => {
+<<<<<<< HEAD
   const coordinateRegex = /^-?[0-9]{1,3}(?:\.[0-9]{1,2})?$/
 
   let errors = [];
@@ -79,6 +101,11 @@ const checkForErrors = ((body) => {
       );
       errorList.name = 'Name is mandatory';
   };
+=======
+  const coordinateRegex = /^-?[0-9]{1,3}(?:\.[0-9]{1,10})?$/
+  let errors = [];
+  let errorList = {};
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
 
   if (body.latitude.length == 0) {
       errors.push(
@@ -115,6 +142,7 @@ const checkForErrors = ((body) => {
       );
       errorList.longitude = 'Incorrect format for longitude';
   };
+<<<<<<< HEAD
 
   if (body.home.length == 0) {
       errors.push(
@@ -125,6 +153,8 @@ const checkForErrors = ((body) => {
       );
       errorList.home = 'Home is Mandatory';
   };
+=======
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
   
   if (errors.length > 0) {
       errors.push(errorList);
@@ -133,4 +163,8 @@ const checkForErrors = ((body) => {
   return errors;
 });
 
+<<<<<<< HEAD
 module.exports = { getChange, postChange };
+=======
+module.exports = { getChange, postChange };
+>>>>>>> e155e2651fd4095056f677b117c54a97f3e9ae50
