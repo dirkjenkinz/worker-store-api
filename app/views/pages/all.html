@@ -30,8 +30,8 @@ Workers Utility - All Workers
         <td class="govuk-table__cell" id='name{{loop.index}}'>{{item.name}}</td>
         <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}}, {{item.location.longitude}}</td>
         <td class="govuk-table__cell" id='home{{loop.index}}'>{{item.home}}</td>
-        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='chg{{loop.index}}' onclick="changeItem(this.id)">Change</button></td>
-        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='del{{loop.index}}' onclick="delItem(this.id)">Delete</button></td>
+        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='chg{{loop.index}}' >Change</button></td>
+        <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='del{{loop.index}}'>Delete</button></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -45,7 +45,7 @@ Workers Utility - All Workers
     }) }}
   </form>
 </div>
-<script>
+<script nonce = {{ nonce }}>
   const changeItem = (id) => {
     id = id.substring(3);
     const g = document.getElementById(`line${id}`);
@@ -64,5 +64,15 @@ Workers Utility - All Workers
     const workerId = g.cells[0].innerText;
     window.location.replace(`/delete?workerId=${workerId}`);
   };
+
+  const del1Button = document.getElementById('workerTable');
+  del1Button.addEventListener('click', (event) => {
+    let {id} = event.target;
+    if (id.substring(0,3) === 'del'){
+      delItem(id);
+    } else {
+      changeItem(id);
+    }
+  });
 </script>
 {% endblock %}

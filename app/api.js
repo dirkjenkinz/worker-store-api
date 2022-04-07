@@ -4,14 +4,19 @@ const config = require('./config/config');
 
 const findWorkersByHome = async (home) => {
     logger.info('findWorkersByHome');
-    let response = await axios.get(`${config.api}/findByHome/${home}`);
-    return response;
+    try {
+        const response = await axios.get(`${config.api}/findByHome/${home}`);
+        return response;
+    } catch (error) {
+        logger.error(error.response.status);
+        return error.response.status;
+    };
 };
 
 const getWorker = async (id) => {
     logger.info('getWorker');
     try {
-        let response = await axios.get(`${config.api}/${id}`);
+        const response = await axios.get(`${config.api}/${id}`);
         return response.data;
     } catch (error) {
         logger.error(error.response.status);
@@ -22,7 +27,7 @@ const getWorker = async (id) => {
 const deleteWorkerAPI = async (id) => {
     logger.info('deleteWorker');
     try {
-        let response = await axios.delete(`${config.api}/${id}`);
+        const response = await axios.delete(`${config.api}/${id}`);
         return response.status
     } catch (error) {
         logger.error(error.response.status);
@@ -30,11 +35,10 @@ const deleteWorkerAPI = async (id) => {
     }
 };
 
-const getAllWorkers = async () =>{
+const getAllWorkers = async () => {
     logger.info('API - getAllworkers');
-    
     try {
-        let response = await axios.get(`${config.api}`)
+        const response = await axios.get(`${config.api}`)
         return response
     } catch (error) {
         logger.error(error.response.status);
@@ -86,9 +90,9 @@ const updateWorker = async (id, name, location, home) => {
     }
 };
 
-module.exports = { 
-    getWorker, 
-    getAllWorkers, 
+module.exports = {
+    getWorker,
+    getAllWorkers,
     postWorker,
     updateWorker,
     findWorkersByHome,

@@ -1,4 +1,4 @@
-const { logger, makeTitleCase } = require("../utils");
+const { logger, makeTitleCase } = require('../utils');
 const { postWorker } = require('../api');
 
 const postAdd = async (req, res) => {
@@ -7,13 +7,13 @@ const postAdd = async (req, res) => {
     if (errors.length > 0) {
         const errorList = errors[errors.length - 1];
         res.render('pages/add', {
-            "errors": errors,
-            "workerId": req.body["worker-id"],
-            "name": req.body.name,
-            "latitude": req.body.latitude,
-            "longitude": req.body.longitude,
-            "home": req.body.home,
-            "errorList": errorList,
+            errors: errors,
+            workerId: req.body['worker-id'],
+            name: req.body.name,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            home: req.body.home,
+            errorList: errorList,
         });
         return;
     };
