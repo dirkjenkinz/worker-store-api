@@ -35,9 +35,9 @@ Workers Utility - Update
         }) }}
       </fieldset>
     </form>
-    {% if data === 500 %}
+    {% if data.length === 0 %}
     <p>No workers found</p>
-    {% elseif data !== '' %}
+    {% else %}
     <h1>List of workers living in {{home}}</h1>
     <table class="govuk-table" id="workerTable">
       <thead class="govuk-table__head">

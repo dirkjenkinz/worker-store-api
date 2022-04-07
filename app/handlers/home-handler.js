@@ -24,6 +24,8 @@ const postHome = async (req, res) => {
     return a.workerId - b.workerId;
   });
 
+  console.log('list=', list)
+
   res.render('pages/home', {
     data: list,
     home:   home,
