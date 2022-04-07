@@ -16,7 +16,8 @@ Workers Utility - All Workers
       <tr class="govuk-table__row">
         <th class="govuk-table__header">Worker ID</th>
         <th class="govuk-table__header">Name</th>
-        <th class="govuk-table__header">Location (Latitude, Longitude)</th>
+        <th class="govuk-table__header">Latitude</th>
+        <th class="govuk-table__header">Longitude</th>
         <th class="govuk-table__header">Home</th>
         <th class="govuk-table__header"></th>
         <th class="govuk-table__header"></th>
@@ -28,7 +29,8 @@ Workers Utility - All Workers
       <tr class="govuk-table__row" id='line{{loop.index}}'>
         <td class="govuk-table__cell" id='wid{{loop.index}}'>{{item.workerId}}</td>
         <td class="govuk-table__cell" id='name{{loop.index}}'>{{item.name}}</td>
-        <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}}, {{item.location.longitude}}</td>
+        <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.latitude}}</td>
+        <td class="govuk-table__cell" id='location{{loop.index}}'>{{item.location.longitude}}</td>
         <td class="govuk-table__cell" id='home{{loop.index}}'>{{item.home}}</td>
         <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='chg{{loop.index}}' >Change</button></td>
         <td class="govuk-table__cell"><button class='govuk-button' data-module="govuk-button" id='del{{loop.index}}'>Delete</button></td>

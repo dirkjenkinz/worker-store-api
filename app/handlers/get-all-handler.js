@@ -4,6 +4,7 @@ const { logger } = require('../utils');
 const getAllDetails = async (req, res) => {
     logger.info('get all handler');
     const response = await getAllWorkers();
+    console.log(response.data)
     logger.debug(response);
 
     let list = response.data;

@@ -8,7 +8,7 @@ const postAdd = async (req, res) => {
         const errorList = errors[errors.length - 1];
         res.render('pages/add', {
             errors: errors,
-            workerId: req.body['worker-id'],
+            workerId: req.body.workerId,
             name: req.body.name,
             latitude: req.body.latitude,
             longitude: req.body.longitude,
@@ -20,39 +20,38 @@ const postAdd = async (req, res) => {
     const home = makeTitleCase(req.body.home);
 
     const response = await postWorker(
-        req.body['worker-id'],
+        req.body.workerId,
         req.body.name,
-        [req.body.latitude, req.body.longitude],
+        req.body.latitude,
+        req.body.longitude,
         home
     );
     logger.debug(response);
-    
+
     res.render('pages/added-worker', {
         response: response,
         details: req.body
     });
 };
-
-module.exports = { postAdd };
-
 const checkForErrors = ((body) => {
-    const coordinateRegex = /^-?[0-9]{1,3}(?:\.[0-9]{1,10})?$/
+    const coordinateRegex = /^-?[0-9]{1,3}(?:\.[0-9]{1,2})?$/
+
     let errors = [];
     let errorList = {};
-    
-    if (body['worker-id'].length === 0) {
+
+    if (body.workerId.length === 0) {
         errors.push(
             {
                 text: 'Worker ID is mandatory',
-                href: '#worker-id'
+                href: '#workerId'
             }
         );
         errorList.worker = 'Worker ID is mandatory';
-    } else if (body['worker-id'].length !== 8) {
+    } else if (body.workerId.length !== 8) {
         errors.push(
             {
                 text: 'Worker ID must be exactly 8 digits long',
-                href: '#worker-id'
+                href: '#workerId'
             }
         );
         errorList.worker = 'Worker ID must be exactly 8 digits long';
@@ -76,7 +75,7 @@ const checkForErrors = ((body) => {
             }
         );
         errorList.latitude = 'Latitude is mandatory';
-    } else if (!coordinateRegex.test(body.latitude)) { 
+    } else if (!coordinateRegex.test(body.latitude)) {
         errors.push(
             {
                 text: 'Incorrect format for latitude',
@@ -94,7 +93,7 @@ const checkForErrors = ((body) => {
             }
         );
         errorList.longitude = 'Longitude is mandatory';
-    } else if (!coordinateRegex.test(body.longitude)) { 
+    } else if (!coordinateRegex.test(body.longitude)) {
         errors.push(
             {
                 text: 'Incorrect format for longitude',
@@ -113,10 +112,12 @@ const checkForErrors = ((body) => {
         );
         errorList.home = 'Home is Mandatory';
     };
-    
+
     if (errors.length > 0) {
         errors.push(errorList);
     };
 
     return errors;
 });
+
+module.exports = { postAdd };
