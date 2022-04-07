@@ -70,7 +70,7 @@ Workers Utility - All Workers
     let {id} = event.target;
     if (id.substring(0,3) === 'del'){
       delItem(id);
-    } else {
+    } else if (id.substring(0,3) === 'chg'){
       changeItem(id);
     }
   });
