@@ -62,25 +62,14 @@ Workers Utility - All Locations
     window.location.replace(`/delete?name=${name}`);
   };
 
-
   const del1Button = document.getElementById('locationTable');
-  del1Button.addEventListener('click', (event) => {
+    del1Button.addEventListener('click', (event) => {
     let {id} = event.target;
-    console.log(id)
     if (id.substring(0,3) === 'del'){
       delItem(id);
     } else {
       changeItem(id);
     }
-  /*
-    id = id.substring(3);
-    console.log('id=', id);
-    const g = document.getElementById(`line${id}`);
-    console.log(g)
-    const name = g.cells[0].innerText;
-    console.log('name=', name);
- //   window.location.replace(`/delete?name=${name}`);
- */
   });
 </script>
 {% endblock %}
