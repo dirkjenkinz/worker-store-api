@@ -9,7 +9,6 @@ const getAllRouter = require('./app/routes/get-all');
 const addRouter = require('./app/routes/add');
 const changeRouter = require('./app/routes/change');
 const locationRouter = require('./app/routes/location');
-const findRouter = require('./app/routes/find');
 const deleteRouter = require('./app/routes/delete-location');
 const config = require('./app/config/config');
 const { getTimeStamp } = require('./app/utils');
@@ -68,7 +67,6 @@ app.use('/', landingRouter);
 app.use('/all', getAllRouter);
 app.use('/add', addRouter);
 app.use('/change', changeRouter);
-app.use('/find', findRouter);
 app.use('/delete', deleteRouter);
 app.use('/location', locationRouter);
 

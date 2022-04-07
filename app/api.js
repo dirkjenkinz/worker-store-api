@@ -15,14 +15,10 @@ const getLocationAPI = async (name) => {
 
 const deleteLocationAPI = async (name) => {
     logger.info('delete location API');
-    console.log(config.api);
-    console.log('>>>>', name)
     try {
         const response = await axios.delete(`${config.api}/${name}`);
-        console.log('response=', response)
         return response.status
     } catch (error) {
-        console.log('error=', error)
         logger.error(error.response.status);
         return error.response.status;
     }
@@ -32,7 +28,6 @@ const getLocationsAPI = async () => {
     logger.info('get locations API');
     try {
         const response = await axios.get(`${config.api}`);
-        console.log(response.data)
         return response
     } catch (error) {
         logger.error(error.response.status);
@@ -42,7 +37,6 @@ const getLocationsAPI = async () => {
 
 const postLocationAPI = async (name, latitude, longitude) => {
     logger.info('post location API');
-    console.log(name, latitude, longitude);
     const body = {
         locationName: name,
         location: {
@@ -51,7 +45,6 @@ const postLocationAPI = async (name, latitude, longitude) => {
         }
     }
     try {
-        console.log('body=', body);
         response = await axios.post(`${config.api}`, body);
         return response.status
     } catch (error) {
@@ -65,8 +58,8 @@ const updateLocationAPI = async (name, latitude, longitude) => {
     const body = {
         name: name,
         location: {
-            longitude: Number(long),
-            latitude: Number(lat),
+            latitude: Number(latitude),
+            longitude: Number(longitude),
         }
     };
     try {

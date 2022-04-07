@@ -1,10 +1,9 @@
 /** * Created by Patrick Whittaker */
 
 {% extends "layout/layout.html" %}
-{% from "input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../macros/input-macro.njk" import inputMacro %}
 
 {% block pageTitle %}
@@ -17,7 +16,7 @@ Workers Utility - Update
     <form class="form" action="/change", method="post">
       {% call govukFieldset({
         legend: {
-          text: "Change Worker Details - Worker ID: " + workerId,
+          text: "Change Location Details",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: true
         }
@@ -26,13 +25,6 @@ Workers Utility - Update
       <input type='hidden' name='workerId' id='workerId' value={{workerId}}>
 
       <h1>{{name}}</h1>
-
-      {{ inputMacro(
-        name = "name",
-        label = "Name",
-        value = name,
-        errorMessage = errorList.name
-      ) }}
 
       {{ inputMacro(
         name = "latitude",
@@ -48,15 +40,8 @@ Workers Utility - Update
         errorMessage = errorList.longitude
       ) }}
 
-      {{ inputMacro(
-        name = "home",
-        label = "Home",
-        value = home,
-        errorMessage = errorList.home
-      ) }}
-
       {{ govukButton({
-        text: "Change worker's details"
+        text: "Change location details"
       }) }}
 
     {% endcall %}
