@@ -18,7 +18,6 @@ const getChange = async (req, res) => {
 const postChange = async (req, res) => {
   logger.info('change handler - post');
   const errors = checkForErrors(req.body);
-  
   if (errors.length > 0) {
     const errorList = errors[errors.length - 1];
     res.render('pages/add', {

@@ -66,16 +66,14 @@ const postWorker = async (id, name, latitude, longitude, home) => {
     }
 };
 
-const updateWorker = async (id, name, location, home) => {
+const updateWorker = async (id, name, latitude, longitude, home) => {
     logger.info('updateWorker');
-    const long = location[0];
-    const lat = location[1];
     const body = {
         workerId: parseInt(id),
         name: name,
         location: {
-            longitude: Number(long),
-            latitude: Number(lat),
+            latitude: Number(latitude),
+            longitude: Number(longitude),
         },
         home: home,
     }
